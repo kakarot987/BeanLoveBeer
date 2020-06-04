@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="header" style="background-image: url(../../assets/Image/beer_57_2x.jpg); background-size: 50px; background-repeat: no-repeat; background-position: left;">
+    <p class="title">Bean Love Beer</p>
+    <button class="homeFav" (click)="favOpen(favContent)">Favroite</button>
+     <button class="homeFav" (click)="ngOnInit()">Home</button>
+</div>
+<div class="search">
+<input style="width: 400px;" type="text" placeholder="Search.." [(ngModel)] = "Beername" (input)="Search()" />
+</div>
+
+
+<div>
+<table>
+  <tr>
+    <th *ngFor="let beer of arr.slice(0,3)"  [class.selected]="beer === selectedBeer"
+    (click)="open(content, beer)">
+     <div class="card">
+      <h4>{{beer.name}}</h4>
+      <p class = "para" style="color: gray; font-size: smaller;">{{beer.description}}</p>
+     </div>
+    </th>
+ </tr>
+ <tr>
+  <th *ngFor="let beer of arr.slice(3,6)"  [class.selected]="beer === selectedBeer"
+  (click)="open(content, beer)">
+   <div class="card">
+    <h4>{{beer.name}}</h4>
+    <p class="para" style="color: gray; font-size: smaller;">{{beer.description}}</p>
+   </div>
+  </th>
+</tr>
+</table>
+</div>
+
+<ng-template  #favContent let-modal>
+  <div>
+      <button type="button" class="closeB" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+      <h2 style="margin-left: 5px;">Favroite Beers</h2>
+      <img src="../../assets/Image/f0s76.png" style="float: right; width: auto; height: auto;">
+    <div *ngFor="let fav of FavroiteBeer">
+      <div *ngFor="let b of arr">
+          <div class="favCard" *ngIf="b.id == fav.id">
+              <h4>{{b.name}}</h4>
+          </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+  <ng-template #content let-modal>
+    
+    <div class="modal-header"  *ngIf = "selectedBeer">
+      
+      <dl>
+        <dt><h2 style="color: rgb(0, 0, 0);">{{selectedBeer.name}}</h2></dt>
+        <dt>Name:</dt>
+          <dd>{{selectedBeer.name}}</dd>
+          <dt>Invented</dt>
+          <dd>{{selectedBeer.invented}}</dd>
+          <dt>Manufacturer</dt>
+          <dd>{{selectedBeer.manufacturer}}</dd>
+          <dt>Alcohol</dt>
+          <dd>{{selectedBeer.alcohol}}</dd>
+          <dt>Description</dt>
+          <dd>{{selectedBeer.description}}</dd>
+          <button class="button" (click) = "forPost(selectedBeer.id)"></button>
+      </dl>
+  
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </ng-template>
+
+
+</div>
