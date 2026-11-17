@@ -1,0 +1,8 @@
+**/target/
+**/bin/
+**/*.class
+**/node_modules/
+**/dist/
+**/.env
+**/*.ibd
+**/*.log

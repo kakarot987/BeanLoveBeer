@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
   forPost(id){
     console.log("id is",id);
     this.idL = id;
-    this.http.post(this.url, this.idL).toPromise().then(data =>{
+    this.http.post(this.url, { id: this.idL }).toPromise().then(data =>{
       console.log(data);
     });
   }
