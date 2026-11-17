@@ -1,0 +1,25 @@
+name: Legacy Angular 9 dependency verification
+on:
+  pull_request:
+  push:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  legacy-frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: Angular FIles/beanlovebeer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '14.21.3'
+          cache: npm
+          cache-dependency-path: Angular FIles/beanlovebeer/package-lock.json
+      - name: Verify clean legacy npm 6 installation
+        run: npm ci --no-audit --no-fund
+      - name: Compile historical Angular 9 frontend
+        run: npm run build -- --prod
