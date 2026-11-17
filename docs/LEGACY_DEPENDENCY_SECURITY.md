@@ -8,3 +8,5 @@ This branch combines the version and transitive-lockfile changes from historical
 - This update is **not** a security modernization. Angular 9, TypeScript 3.8, old build tooling and Node 14 remain obsolete. Do not deploy this frontend publicly without a full supported-toolchain migration and a security review.
 
 The project is retained for historical portfolio use. You may archive the repository through GitHub settings once reviewed, but archiving by itself does not patch vulnerabilities. Do not claim that every vulnerability is resolved because these selected updates merged.
+
+The existing dashboard CSS is approximately **143 KB**, well beyond modern per-component styling budgets. The historical app's style warning/error thresholds were adjusted to 150/175 KB only to validate the legacy production bundle without rewriting its design. This is a documented performance debt, not a performance optimization; a production modernization should split and slim those styles.
